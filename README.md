@@ -14,9 +14,11 @@ This is the source code for the Defunct Interpreter.
 
 ## Software used during development
 
-| Python 3.6 | runs the code |
-| Visual Studio Community 2017 | text editor and IDE |
-| PyInstaller 3.3 | to create the binary .exe |
+| Resource | Purpose |
+| :--- | :--- |
+| Python 3.6 | Runs the source code |
+| Visual Studio Community 2017 | Text editor and IDE |
+| PyInstaller 3.3 | Creates the binary .exe |
 
 ## Licence
 
