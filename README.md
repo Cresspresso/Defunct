@@ -1,9 +1,11 @@
 # Defunct Interpreter
 
 by Elijah John Shadbolt (Cresspresso)
+
 Copyright (c) 2017    MIT Licence
 
 Version 1.03
+
 2017-11-23 11:10:00 +1300
 
 ## Description
@@ -12,9 +14,9 @@ This is the source code for the Defunct Interpreter.
 
 ## Software used during development
 
-- Python 3.6                   - runs the code
-- Visual Studio Community 2017 - text editor and IDE
-- PyInstaller 3.3              - to create the binary .exe
+Python 3.6 	runs the code
+Visual Studio Community 2017 	text editor and IDE
+PyInstaller 3.3 	to create the binary .exe
 
 ## Licence
 
