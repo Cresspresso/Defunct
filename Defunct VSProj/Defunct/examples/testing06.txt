@@ -1,0 +1,1 @@
+def newprint do (newprint [x.x])
