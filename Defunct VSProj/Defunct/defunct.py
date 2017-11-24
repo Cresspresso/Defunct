@@ -3,8 +3,8 @@ Defunct Interpreter
 by Elijah John Shadbolt (Cresspresso)
 Copyright (c) 2017    MIT Licence
 
-Version 1.03
-2017-11-23 11:10:00 +1300
+Version 1.04
+2017-11-24 19:26:22 +1300
 
 
 ___Quick-Start___
@@ -101,8 +101,8 @@ __help_clargs = """Defunct Interpreter
 by Elijah John Shadbolt (Cresspresso)
 Copyright (c) 2017    MIT Licence
 
-Version 1.03
-2017-11-23 11:10:00 +1300
+Version 1.04
+2017-11-24 19:26:22 +1300
 
 Usage:
     <filepath> [options]
@@ -729,6 +729,8 @@ def Simplify(sub, execute=False, simplifyMode=SimplifyMode.Normal):
 
 				if sub.left.argname == primitiveName_Print:
 					return Execute_Print(sub.right)
+				elif sub.left.argname == primitiveName_PrintFlush:
+					return Execute_Print(sub.right, flush=True)
 
 				return sub
 			#
@@ -1099,13 +1101,18 @@ Keywords = [keyword_Define, keyword_DefineUnsimplified, keyword_Execute]
 #region Primitive Names
 
 """Print an expression to the console.
-	print <expression>			-> identity
+	print <expression>    -> identity
 """
 primitiveName_Print = 'print'
 
+"""Print an expression to the console. Flush buffer and display immediately.
+	print_flush <expression>    -> identity
+"""
+primitiveName_PrintFlush = 'print_flush'
+
 
 """List of all valid primitive names"""
-PrimitiveNames = [primitiveName_Print]
+PrimitiveNames = [primitiveName_Print, primitiveName_PrintFlush]
 
 #endregion
 #region Primitives
@@ -1117,10 +1124,11 @@ def Primitive_Identity():
 	return sub
 #
 
-def Execute_Print(sub):
+def Execute_Print(sub, flush=False):
 	"""Prints an expression to the console, along with any aliases (names of definitions with identical body).
 	Arguments:
 		sub: Sub - the expression to print
+		flush: bool - passed in to python 'print' function
 	Returns:
 		Func - Identity primitive
 	"""
@@ -1129,7 +1137,7 @@ def Execute_Print(sub):
 	if len(defs) > 0:
 		msg += joinitems(', ', lambda d: d.name, defs) + ' :  '
 	msg += SubToString(sub)
-	print (msg)
+	print (msg, flush=flush)
 	return Primitive_Identity()
 #
 

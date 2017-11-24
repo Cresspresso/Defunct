@@ -12,7 +12,7 @@
     <Name>Defunct</Name>
     <RootNamespace>Defunct</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>"examples\example01.txt"</CommandLineArguments>
+    <CommandLineArguments>"examples\testing07.txt"</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -71,6 +71,9 @@
       <SubType>Code</SubType>
       <Publish>True</Publish>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="examples\testing07.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
