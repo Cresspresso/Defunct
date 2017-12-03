@@ -5,8 +5,6 @@
 **/__pycache__/
 
 # pyinstaller
-Defunct VSProj/defunct/dist/
-Defunct VSProj/defunct/build/
-Defunct VSProj/defunct/defunct.spec/
+**/_pyinstaller/
 
 
