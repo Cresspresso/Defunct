@@ -10,7 +10,12 @@ Version 1.03
 
 ## Description
 
-This is the source code for the Defunct Interpreter.
+This is the source code for the Defunct Interpreter, written in Python.
+
+Defunct is a simplistic programming language based on pure Lambda Calculus.
+It is terribly inefficient and slow, but it relies solely on the principles
+of raw Lambda Calculus. Expressions of functions can be defined, referenced,
+simplified, substituted, and executed.
 
 ## Software used during development
 
