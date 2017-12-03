@@ -3,6 +3,10 @@
 
 # Python cache
 **/__pycache__/
-**/_pyinstaller/
+
+# pyinstaller
+Defunct VSProj/defunct/dist/
+Defunct VSProj/defunct/build/
+Defunct VSProj/defunct/defunct.spec/
 
 

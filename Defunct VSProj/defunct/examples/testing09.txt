@@ -1,0 +1,260 @@
+/// Basics
+
+def identity [x.x]
+def true  [y x. y]
+def false [y x. x]
+
+
+/// CN Operators
+
+def ++  [w. [y x. y(w y x)]]
+def add [x y. y ++ x]
+def mul [x y. [z.x(y z)]]
+
+
+/// Church Numerals (CN)
+
+def 0 false
+def 1 (++ 0)
+def 2 (++ 1)
+def 3 (++ 2)
+def 4 (++ 3)
+def 5 (++ 4)
+def 6 (++ 5)
+def 7 (++ 6)
+def 8 (++ 7)
+def 9 (++ 8)
+def 10 (++ 9)
+def 11 (++ 10)
+def 12 (++ 11)
+def 13 (++ 12)
+
+def 21 (add 8 13)
+def 34 (add 13 21)
+def 55 (add 21 34)
+
+
+/// Pairs
+
+def pair	[a b. [z. z a b]]
+def pair_first	[p. p true]
+def pair_second	[p. p false]
+
+
+/// CN Operators
+
+def --  [n. n (
+	[p. [z. z (++ (pair_first p)) (pair_first p)]]
+	) [z.z 0 0] false]
+
+def sub [x y. y -- x]
+
+
+/// Logical Operators
+
+def not [x. x false true]
+def and [x y. x y false]
+def or  [x y. x true y]
+
+def nand [x y. x y false false true]
+def nor  [x y. x true y false true]
+
+def xor  [x y. and (or x y) (nand x y)]
+def xnor [x y. xor x y false true]
+
+
+/// CN Comparison Operators
+
+def		  eq0 [x. x false not false]
+def_u ==0 eq0
+def       ne0 [x. not (eq0 x)]
+def_u !=0 ne0
+def		 ge	[x y. eq0 (x -- y)]
+def_u >= ge
+def		 eq	[x y. and (ge x y) (ge y x)]
+def_u == eq
+def		 ne [x y. not (eq x y)]
+def_u != ne
+def		 gt	[x y. and (ge x y) (not (eq x y))]
+def_u >  gt
+def		 lt	[x y. not (ge x y)]
+def_u <  lt
+def		 le	[x y. or (lt x y) (eq x y)]
+def_u <= le
+
+
+/// Recursion
+
+def Y [y.[$q.y(q q)][$q.y(q q)]]
+
+def sum1toN [$n. Y [r.[n.  eq0 n 0 (n ++ (r (-- n)))  ]] n]
+
+def fibonacci (Y [r.[n a b.  (eq0 n) (b) (r (-- n) b (a ++ b))  ]])
+
+
+
+/// Integers
+
+/* Encoded as pair(sign: bool, absolute: CN)
+   When sign is true, value is negative.
+   When sign is false, value is positive or zero.
+*/
+
+def 0i (pair false 0)
+def 1i (pair false 1)
+def 2i (pair false 2)
+def 3i (pair false 3)
+def 4i (pair false 4)
+def 5i (pair false 5)
+def 6i (pair false 6)
+def 7i (pair false 7)
+def 8i (pair false 8)
+def 9i (pair false 9)
+def 10i (pair false 10)
+def 11i (pair false 11)
+def 12i (pair false 12)
+
+def -1i (pair true 1)
+def -2i (pair true 2)
+def -3i (pair true 3)
+def -4i (pair true 4)
+def -5i (pair true 5)
+def -6i (pair true 6)
+def -7i (pair true 7)
+def -8i (pair true 8)
+def -9i (pair true 9)
+def -10i (pair true 10)
+def -11i (pair true 11)
+def -12i (pair true 12)
+
+
+/// Integer Operators
+
+// negate
+def neg`i [i. pair (not (pair_first i)) (pair_second i)]
+
+// multiply
+def mul`i [a b.
+pair
+	(xor(pair_first a)(pair_first b))
+	(mul(pair_second a)(pair_second b))
+]
+
+// increment
+def ++i [i.
+(pair_first i)
+	(pair
+		(ne0 (-- (pair_second i)))
+		(-- (pair_second i))
+	)
+	(pair false (++ (pair_second i)) )
+]
+
+// decrement
+def --i [i.
+(pair_first i)
+	(pair true (++ (pair_second i)))
+	((eq0 (pair_second i))
+		(pair true 1)
+		(pair false (-- (pair_second i)))
+	)
+]
+
+// addition
+def add`i [a b.
+(xor (pair_first a) (pair_first b)) // compare signs
+	(  // not same sign
+	ge (pair_second a) (pair_second b)
+		(pair
+			(pair_first a)
+			(sub (pair_second a) (pair_second b))
+		)
+		(pair
+			(pair_first b)
+			(sub (pair_second b) (pair_second a))
+		)
+	)
+	(  // same sign
+	pair
+		(pair_first a)
+		(add (pair_second a) (pair_second b))
+	)
+]
+
+// subtraction
+def sub`i [a b. add`i (a) (neg`i b)]
+
+
+// Integer Comparison Operators
+
+// equal to zero
+def eq0i [i. eq0 (pair_second i)]
+def neq0i [i. not (eq0i i)]
+
+// equal
+def eq`i [a b.
+and
+	(xnor (pair_first a) (pair_first b))
+	(eq (pair_second a) (pair_second b))
+]
+def neq`i [a b. not (eq`i a b)]
+
+// other integer comarators
+def _icomp [comp ssc. [a b.
+(xor (pair_first a) (pair_first b))
+	(  // not same sign
+	pair_first (ssc a b)
+	)
+	(  // same sign
+	(pair_first a)
+		(comp (pair_second b) (pair_second a))
+		(comp (pair_second a) (pair_second b))
+	)
+]]
+
+def ge`i [a b. _icomp ge [x y.y] a b] // greater than or equal to
+def gt`i [a b. _icomp gt [x y.y] a b] // greater than
+
+def le`i [a b. _icomp le [x y.x] a b] // less than or equal to
+def lt`i [a b. _icomp lt [x y.x] a b] // less than
+
+
+def convert`CN`i [n. pair false n]
+def convert`i`CN [i. (pair_first i) 0 (pair_second i)]
+
+
+/// Lists
+
+def emptylist false
+def list_isempty [list. list [a b.false] true]
+
+// appends item to list as its new head
+def list_append [head list. [f x. f head (list f x)]]
+
+// returns top item in list
+def list_head [list. list true [x.]]
+
+// pops top item, returns remaining list
+def list_tail [list. pair_first(list[a b. pair (pair_second b)(list_append a (pair_second b))](pair emptylist emptylist))]
+
+// returns n'th item in the list (n:CN)
+def list_indexer [n list. list_head (n list_tail list)]
+
+// example usage
+do (print_flush emptylist)
+
+def templist1 (list_append 1 emptylist)
+def templist2 (list_append 2 templist1)
+def templist3 (list_append 3 templist2)
+def templist4 (list_append 4 templist3)
+
+do (print_flush templist4)
+do (print_flush (list_head templist4))
+do (print_flush (list_tail templist4))
+
+do (print_flush (list_indexer 0 templist4))
+do (print_flush (list_indexer 1 templist4))
+do (print_flush (list_indexer 2 templist4))
+do (print_flush (list_indexer 3 templist4))
+
+

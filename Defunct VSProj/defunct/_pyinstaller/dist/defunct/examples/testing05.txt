@@ -1,0 +1,29 @@
+def identity [x. x]
+
+def a [y x. x y]
+def b a
+def c [x y. y]
+
+def subbedFunc (a b c)	// represents [y.y]
+def_u unsubFunc (a b c)	// first represents [y.y]
+
+do (
+print (subbedFunc)      // 'print' functions can be used in series because it returns identity
+print (unsubFunc)
+)
+
+def a [y x. x x y]      // overrides previous definition of 'a'
+
+do (
+print (subbedFunc)		// stays [y.y]
+print (unsubFunc)		// now simplifies to [y x. x y] because 'a' has changed
+)
+
+def otherFunc (me)			// 'me' is undefined and therefore cannot be substituted, so the reference to 'me' is stored
+do (print (otherFunc))
+
+def me [w y x. y (w y x)]	// 'me' is now defined, but otherFunc keeps the reference unsubstituted.
+do (print (otherFunc))		// otherFunc is copied and simplified, with 'me' defined, so it is simplified fully.
+
+
+

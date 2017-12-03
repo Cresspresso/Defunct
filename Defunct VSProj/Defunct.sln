@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Defunct", "Defunct\Defunct.pyproj", "{F007A65E-D485-44DA-9996-68544FE3475C}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Defunct", "Defunct\defunct.pyproj", "{F007A65E-D485-44DA-9996-68544FE3475C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

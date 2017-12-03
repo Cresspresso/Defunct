@@ -1,0 +1,29 @@
+Usage:
+    <filepath> [options]
+    
+        <filepath>: string
+            Specifies the .txt file to interpret.
+
+	    options:
+
+        -printinfo
+            Display log text in the console, such as which file is being read.
+
+        -pauseOnExit
+            Shows the prompt "Press any key to continue . . . " when the
+            program is exited.
+
+        -debugInternal
+            (Internal, not for public use)
+            Displays debugging text (useful when developing the internal code).
+
+    -help [type]
+	  type:
+	    about
+		    Description of this project.
+		clargs
+		    Command-Line Arguments.
+		licence
+		    Software Licence (MIT Licence).
+		quick_start
+		    Instructions on the basics of how to run defunct.exe.

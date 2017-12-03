@@ -1,0 +1,3 @@
+In the console, cd to the directory containing defunct.exe and run this command:
+
+defunct "examples\example01.txt"
