@@ -1,0 +1,22 @@
+
+Defunct Interpreter
+
+This is an interpeter (written in Python) for Defunct code.
+
+Defunct is a simplistic programming language based on pure Lambda Calculus.
+It is terribly inefficient and slow, but it relies solely on the principles
+of raw Lambda Calculus. Expressions of functions can be defined, referenced,
+simplified, substituted, and executed.
+
+This interpreter works by creating Function, Bracket, and Reference objects
+in no particular place in memory, all referencing each other to create a
+syntax tree, which is then evaluated at runtime. References are linked and
+substituted during simplification of an expression.
+
+Defunct is a non-typed language. There are some functions that are not pure
+Lambda Calculus which are called commands, but they always return Lambda
+Calculus functions (usually the identity function). An example is the command
+'print', which prints an expression to the console.
+
+It is very inefficient because all code data is made up of many python
+objects, and there are no optimised primitive types such as Integer or Float.

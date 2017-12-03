@@ -1,0 +1,15 @@
+def b [x. ]
+do(print(  [z. ]  ))
+
+def c [x y. y]
+do(print(  [x y. y] [a.a] [m n. n]  ))
+
+def a [x y.   y x [z. y z] x]
+do(print(  [x y.   y x [z. y z] x]  ))
+
+def d ([x y. y] [a.a] [m n. m])
+
+def e [x y. y]
+def e [x y. x]
+
+def_u f ([x. x x] [y x.x y])

@@ -1,0 +1,36 @@
+def identity	[x.x]
+def true		[x y. x]
+def false		[x y. y]
+def ++			[w y x. y((w y) x)]
+
+// comment
+def 0 false
+def 1 (++ 0)
+def 2 (++ 1)
+def 3 (++ 2)
+def 4 (++ 3)
+def 5 (++ 4)
+def 6 (++ 5)
+
+do (print 3) // comment 2
+
+/*
+multiline comment
+*/
+def a (print ++)
+do a
+
+do (print(  a a  ))
+
+def y [y x. x y]
+def x [x. y x] // interprets as [x1 x2. x2 x1] but prints as [x x. x x]
+do (print y)
+do (print x)
+
+do (print(  3 ++ 2  ))
+
+def add [x/* inline comment */y. x ++ y]
+
+do (print(  add 3 2  ))
+
+

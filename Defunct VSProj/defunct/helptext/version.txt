@@ -1,0 +1,7 @@
+
+Defunct Interpreter
+by Elijah John Shadbolt (Cresspresso)
+Copyright (c) 2017    MIT Licence
+
+Version 1.1
+2017-12-03 18:48:37 +1300

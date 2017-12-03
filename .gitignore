@@ -3,6 +3,8 @@
 
 # Python cache
 **/__pycache__/
+
+# pyinstaller
 **/_pyinstaller/
 
 

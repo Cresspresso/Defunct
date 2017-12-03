@@ -1,0 +1,124 @@
+/// Basics
+
+def identity [x.x]
+def true  [y x. y]
+def false [y x. x]
+
+
+/// CN Operators
+
+def ++  [w. [y x. y(w y x)]]
+def add [x y. y ++ x]
+def mul [x y. [z.x(y z)]]
+
+
+/// Church Numerals (CN)
+
+def 0 false
+def 1 (++ 0)
+def 2 (++ 1)
+def 3 (++ 2)
+def 4 (++ 3)
+def 5 (++ 4)
+def 6 (++ 5)
+def 7 (++ 6)
+def 8 (++ 7)
+def 9 (++ 8)
+def 10 (++ 9)
+def 11 (++ 10)
+def 12 (++ 11)
+def 13 (++ 12)
+
+def 21 (add 8 13)
+def 34 (add 13 21)
+def 55 (add 21 34)
+
+
+/// Pairs
+
+def pair	[a b. [z. z a b]]
+def pair_first	[p. p true]
+def pair_second	[p. p false]
+
+
+/// CN Operators
+
+def --  [n. n (
+	[p. [z. z (++ (pair_first p)) (pair_first p)]]
+	) [z.z 0 0] false]
+
+def sub [x y. y -- x]
+
+
+/// Logical Operators
+
+def and [x y. x y false]
+def or  [x y. x true y]
+def not [x. x false true]
+
+
+/// CN Comparison Operators
+
+def		  eq0 [x. x false not false]
+def_u ==0 eq0
+def		 ge	[x y. eq0 (x -- y)]
+def_u >= ge
+def		 eq	[x y. and (ge x y) (ge y x)]
+def_u == eq
+def		 ne	[x y. not (eq x y)]
+def_u != ne
+def		 gt	[x y. and (ge x y) (not (eq x y))]
+def_u >  gt
+def		 lt	[x y. not (ge x y)]
+def_u <  lt
+def		 le	[x y. or (lt x y) (eq x y)]
+def_u <= le
+
+
+/// Recursion
+
+def Y [y.[$q.y(q q)][$q.y(q q)]]
+
+
+/* sum1toN (n: CN) -> CN
+examples:
+	(sum1toN 3) -> 6
+*/
+def sum1toN [$n. Y [r.[n.  eq0 n 0 (n ++ (r (-- n)))  ]] n]
+
+
+/* fibonacci (n: CN, a: CN, b: CN) -> CN  where
+	n - how many terms to evaluate. Returns the (n+1)th term of the series.
+	a - starting 1st term
+	b - starting 2nd term
+examples:
+	(fibonacci 4 0 1) -> 5
+	(fibonacci n 0 1) for n >= 0:
+		[0,] 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+*/
+
+def fibonacci (Y [r.[n a b.  (eq0 n) (b) (r (-- n) b (a ++ b))  ]])
+
+/*def fibonacci [n a b.
+	(eq0 n)
+		(a)
+		([$n. Y (
+			[r.[n a b.  (eq0 n) (b) (r (-- n) b (a ++ b))  ]]
+		) n a b] (-- n))
+]*/
+
+/* TODO:
+make an 'unapplied parameter' unary operator (like $ for recursiveness) for brackets, functions, and arguments,
+to say its parent bracket should not be simplified (have a function applied to the unapplied parameter)
+until all top-level arguments have been substituted.
+*/
+
+do (print_flush true)
+do (print_flush (fibonacci 0 0 1))
+do (print_flush (fibonacci 1 0 1))
+do (print_flush (fibonacci 2 0 1))
+do (print_flush (fibonacci 3 0 1))
+do (print_flush (fibonacci 4 0 1))
+do (print_flush (fibonacci 5 0 1))
+
+

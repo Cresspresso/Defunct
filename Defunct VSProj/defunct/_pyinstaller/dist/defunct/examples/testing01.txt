@@ -1,0 +1,6 @@
+do (print (  [a.[b.[c.(b ((a b) c))]]][d.[e.(e d)]]  ))
+
+do (print (  [x.[x.[x.x]]]  ))
+do (print (  [x.[y.(x (y x))]]  ))
+
+
