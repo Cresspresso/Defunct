@@ -1,3 +1,9 @@
+#region imports
+
+from debugwrapper import dprint
+from globalvars import currentHierarchy
+
+#endregion
 #region Exceptions
 
 class DefunctError(Exception):
@@ -25,9 +31,9 @@ class DefunctError_InputError(DefunctError):
 #endregion
 #region Defunct Expressions
 
-"""
-Note: 'Sub' is a nonexistent base class of Bracket, Func, and ArgRef.
-Sub represents what I call an expression node of Lambda Calculus.
+"""NOTE:
+Sub is a nonexistent base class of Bracket, Func, and ArgRef.
+It represents what I call an expression node of Lambda Calculus.
 """
 
 class Bracket:
@@ -42,7 +48,8 @@ class Bracket:
 		"""
 		this.left = left
 		this.right = right
-
+	#
+		
 	@property
 	def recursive(this):
 		"""Whether this Bracket can be considered recursive.
@@ -51,6 +58,15 @@ class Bracket:
 		"""
 		return this.left == None or this.right == None or (this.left.recursive and this.right.recursive)
 	#
+
+	@property
+	def containsRecursive(this):
+		"""Whether this Bracket contains a recursive Sub.
+		Returns:
+			bool
+		"""
+		return this.left.containsRecursive or this.right.containsRecursive
+	#
 #
 class Func:
 	"""Represents a Lambda Calculus Function which can be applied to another Sub.
@@ -58,13 +74,23 @@ class Func:
 	"""
 	def __init__(this, argname='', body=None, recursive=False):
 		"""Arguments:
-	argname		: str - this function's argument name
-	body		: Sub ref - the top expression node contained within this function
-	recursive	: bool - whether this function can be considered recursive.
+			argname		: str - this function's argument name
+			body		: Sub ref - the top expression node contained within this function
+			recursive	: bool - whether this function can be considered recursive.
 		"""
 		this.argname = argname
 		this.body = body
 		this.recursive = recursive
+	#
+	
+	@property
+	def containsRecursive(this):
+		"""Whether this Func contains a recursive Sub.
+		Returns:
+			bool
+		"""
+		return this.recursive or this.body.containsRecursive
+	#
 #
 class ArgRef:
 	"""Represents a reference to either a function argument or a definition.
@@ -78,7 +104,8 @@ class ArgRef:
 		"""
 		this.argname = argname
 		this.func = func
-
+	#
+	
 	@property
 	def recursive(this):
 		"""Whether this ArgRef can be considered recursive.
@@ -86,6 +113,15 @@ class ArgRef:
 			bool
 		"""
 		return this.func != None and this.func.recursive
+	#
+	
+	@property
+	def containsRecursive(this):
+		"""Whether this ArgRef contains a recursive Sub.
+		Returns:
+			bool
+		"""
+		return this.recursive or this.func in currentHierarchy
 	#
 #
 
@@ -100,6 +136,13 @@ class Def:
 		"""
 		this.name = name
 		this.body = body
+	#
+
+	def __contains__(this, item):
+		if typeof(item) == Def and item == this:
+			return True
+		return this.body.__contains__(item)
+	#
 #
 
 #endregion

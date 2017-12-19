@@ -1,5 +1,5 @@
 ('C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct '
- 'VSProj\\Defunct\\_pyinstaller\\build\\defunct\\defunct.exe',
+ 'VSProj\\defunct\\_pyinstaller\\build\\defunct\\defunct.exe',
  True,
  False,
  True,
@@ -12,7 +12,7 @@
  'defunct.pkg',
  [('out00-PYZ.pyz',
    'C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct '
-   'VSProj\\Defunct\\_pyinstaller\\build\\defunct\\out00-PYZ.pyz',
+   'VSProj\\defunct\\_pyinstaller\\build\\defunct\\out00-PYZ.pyz',
    'PYZ'),
   ('struct', 'c:\\program files\\python36\\lib\\struct.pyo', 'PYMODULE'),
   ('pyimod01_os_path',
@@ -33,16 +33,16 @@
    'PYSOURCE'),
   ('defunct',
    'C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct '
-   'VSProj\\Defunct\\_pyinstaller\\defunct.py',
+   'VSProj\\defunct\\_pyinstaller\\defunct.py',
    'PYSOURCE'),
   ('defunct.exe.manifest',
    'C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct '
-   'VSProj\\Defunct\\_pyinstaller\\build\\defunct\\defunct.exe.manifest',
+   'VSProj\\defunct\\_pyinstaller\\build\\defunct\\defunct.exe.manifest',
    'BINARY')],
  [],
  False,
  False,
- 1512327523,
+ 1513645595,
  [('run.exe',
    'c:\\program '
    'files\\python36\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
