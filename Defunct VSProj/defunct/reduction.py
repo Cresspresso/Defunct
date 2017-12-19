@@ -167,10 +167,16 @@ def Simplify(sub, execute=False, simplifyMode=SimplifyMode.Normal):
 			if sub.left.recursive:
 
 				def check():
-					return (type(sub) == Bracket and sub.left.recursive
-					and ((type(sub.left) == Bracket and type(sub.left.left) != ArgRef) or (type(sub.left) == Func)))
+					return (
+						type(sub) == Bracket
+						and sub.left.recursive
+						and (
+							type(sub.left) == Func
+							or (type(sub.left) == Bracket and type(sub.left.left) != ArgRef)
+						)
+					)
 				#
-				if not sub.right.recursive and check():
+				if not sub.right.containsRecursive and check():
 					while check():
 						if type(sub.left) == Bracket:
 							sub.left = SimplifyBracket_Apply(sub.left, execute, SimplifyMode.ApplyRecursive)
@@ -195,6 +201,8 @@ def Simplify(sub, execute=False, simplifyMode=SimplifyMode.Normal):
 
 	#endregion
 	#region body Simplify
+	currentHierarchy.append(sub)
+
 	if type(sub) == Bracket:
 		sub = SimplifyBracket(sub, execute, simplifyMode)
 	#
@@ -207,6 +215,7 @@ def Simplify(sub, execute=False, simplifyMode=SimplifyMode.Normal):
 			sub = Simplify(sub, execute, simplifyMode)
 		#
 	#
+	currentHierarchy.pop()
 	return sub
 	#endregion
 #

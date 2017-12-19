@@ -3,8 +3,8 @@ Defunct Interpreter
 by Elijah John Shadbolt (Cresspresso)
 Copyright (c) 2017    MIT Licence
 
-Version 1.1
-2017-12-03 18:48:37 +1300
+Version 1.2
+2017-12-19 13:56:40 +1300
 
 Check out the 'helptext' folder for more information about this project.
 """
@@ -31,11 +31,11 @@ def programCanStart(): return clarg_filepath != None #
 help_folder = "helptext"
 help_type_default = ("version.txt", "clargs.txt")
 help_types = {
-	'about': "about.txt",
-	'clargs': "clargs.txt",
-	'licence': "licence.txt",
-	'quick_start': "quick_start.txt",
-	'version': "version.txt",
+	'about': ("about.txt",),
+	'clargs': ("clargs.txt",),
+	'licence': ("licence.txt",),
+	'quick_start': ("quick_start.txt",),
+	'version': ("version.txt",),
 }
 
 def PrintHelp():
@@ -53,7 +53,7 @@ def PrintHelp():
 			pass
 
 		if helptype in help_types:
-			pr(help_types[helptype])
+			pr(*help_types[helptype])
 		else:
 			pr(*help_type_default)
 	#
@@ -547,9 +547,9 @@ def DoEntry():
 		#
 		elif key == keyword_Execute:
 			sub = DoSub()
-			dprint ('EXECUTE    ' + SubToString(sub, sub))
+			dprint ('EXECUTE    ' + SubToString(sub, sub), flush=True)
 			sub = Simplify(sub, execute=True)
-			dprint ('Finally    ' + SubToString(sub, sub))
+			dprint ('Finally    ' + SubToString(sub, sub), flush=True)
 		#
 	#
 #

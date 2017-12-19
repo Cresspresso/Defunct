@@ -13,7 +13,7 @@
     <Name>defunct</Name>
     <RootNamespace>Defunct</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>"examples/testing10.txt"</CommandLineArguments>
+    <CommandLineArguments>"examples/example02.txt"</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -52,55 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="examples\" />
+    <Folder Include="examples\_internal\" />
     <Folder Include="helptext\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing01.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing03.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing02.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-    <AdditionalFiles Include="examples\testing04.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="examples\example01.txt">
       <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing05.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing06.txt">
-      <SubType>Code</SubType>
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing10.txt">
-      <Publish>True</Publish>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="examples\testing08.txt">
       <Publish>True</Publish>
     </AdditionalFiles>
   </ItemGroup>
@@ -125,6 +82,19 @@
       <SubType>Code</SubType>
       <Publish>True</Publish>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="examples\example02.txt" />
+    <Content Include="examples\_internal\testing01.txt" />
+    <Content Include="examples\_internal\testing02.txt" />
+    <Content Include="examples\_internal\testing03.txt" />
+    <Content Include="examples\_internal\testing04.txt" />
+    <Content Include="examples\_internal\testing05.txt" />
+    <Content Include="examples\_internal\testing06.txt" />
+    <Content Include="examples\_internal\testing07.txt" />
+    <Content Include="examples\_internal\testing08.txt" />
+    <Content Include="examples\_internal\testing09.txt" />
+    <Content Include="examples\_internal\testing10.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

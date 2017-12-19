@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['defunct.py'],
-             pathex=['C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct VSProj\\Defunct\\_pyinstaller'],
+             pathex=['C:\\Users\\elija\\Documents\\GitHub\\Cresspresso\\Defunct\\Defunct VSProj\\defunct\\_pyinstaller'],
              binaries=[],
              datas=[],
              hiddenimports=[],
