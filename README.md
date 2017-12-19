@@ -4,9 +4,9 @@ by Elijah John Shadbolt (Cresspresso)
 
 Copyright (c) 2017    MIT Licence
 
-Version 1.03
+Version 1.2
 
-2017-11-23 11:10:00 +1300
+2017-12-19 13:56:40 +1300
 
 ## Description
 
