@@ -25,6 +25,44 @@ simplified, substituted, and executed.
 | Visual Studio Community 2017 | Text editor and IDE |
 | PyInstaller 3.3 | Creates the binary .exe |
 
+## Installation
+
+Windows, Command Line only
+
+1. [Click Here to Download v1.2 zip](https://github.com/Cresspresso/Defunct/releases/download/1.2/17-12-19_13-56-40_v1.2_defunct.zip), OR go to [Latest Release](https://github.com/Cresspresso/Defunct/releases/latest) and download the .zip file.
+
+2. Unzip to somewhere memorable, like your Desktop.
+
+3. Open the Command Prompt.
+
+    To open the Command Prompt in Windows 10: right click Start > Command Prompt
+
+4. Navigate to the unzipped folder by typing this command:
+
+        cd "<your-unzipped-directory>\defunct\"
+
+    For example, if you unzipped `17-12-19_13-56-40_v1.2_defunct.zip` to the Desktop:
+
+        cd "C:\Users\<your-username>\Desktop\17-12-19_13-56-40_v1.2_defunct\defunct"
+
+5. Use the following command to run `defunct.exe` on an example file:
+
+        defunct "examples\example01.txt" -printinfo
+
+    If installed correctly, it should come up with:
+
+        Interpreting file at "examples/example01.txt"...
+        3 :  [y x. y(y(y x))]
+        ++ :  [w y x. y(w y x)]
+        6 :  [y x. y(y(y(y(y(y x)))))]
+        6 :  [y x. y(y(y(y(y(y x)))))]
+        Finished interpreting file at "examples/example01.txt".
+        No errors encountered.
+
+    You can also get help with command-line arguments by running this command:
+
+        defunct -help
+
 ## Licence
 
 MIT License
